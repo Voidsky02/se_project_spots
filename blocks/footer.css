@@ -1,0 +1,18 @@
+.footer {
+}
+
+.footer__content {
+  display: flex;
+  justify-content: center;
+  border-top: 1px rgba(33, 33, 33, 0.4) solid;
+}
+
+.footer__copyright {
+  margin: 0;
+  padding: 60px 0 60px 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  color: #212121;
+  opacity: 70%;
+}
