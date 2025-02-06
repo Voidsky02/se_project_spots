@@ -48,11 +48,17 @@
 }
 
 .profile__edit-btn {
+  display: flex;
+  gap: 8px;
   margin-top: auto;
+  padding: 0;
+  text-align: left;
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
   color: #212121;
+  background-color: transparent;
+  border: none;
 }
 
 .profile__add-btn {
@@ -91,6 +97,10 @@
 
   .profile__column {
     margin: 0 0 20px;
+  }
+
+  .profile__edit-btn {
+    justify-content: center;
   }
 
   .profile__add-btn {
