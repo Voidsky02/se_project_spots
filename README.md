@@ -1,21 +1,29 @@
-# Project 3: Spots
+# Spots
 
-### Overview  
+Spots is a social media website that allows users to access and share images with people around the world.
 
-* Intro  
-* Figma  
-* Images  
-  
-**Intro**
-  
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spots?type=design&node-id=2%3A60&mode=design&t=afgNFybdorZO6cQo-1)
-  
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+## Description
+
+Users can create their own profiles with bio's detailing who they are and what their interests are.
+
+They will be able to upload pictures with captions, allowing them to express themselves creativly.
+
+Everyone will also be able to like posts, allowing their feeds to be filled with content catered to them personally.
+
+## Tech Stack
+
+- Html
+- Css
+- Responsive Design
+
+## Example Pictures:
+
+![user profile overview](./images/demo/profile-overview.png)
+
+![feed of users uploaded pictures](./images/demo/image-feed.png)
+
+## Deployment
+
+This website is deployed to Github Pages
+
+- Deplyment Link: https://voidsky02.github.io/se_project_spots/
