@@ -27,3 +27,7 @@ Everyone will also be able to like posts, allowing their feeds to be filled with
 This website is deployed to Github Pages
 
 - Deplyment Link: https://voidsky02.github.io/se_project_spots/
+
+## Video Description
+
+- Link: https://drive.google.com/file/d/1HTA_wvKJQfUyM7qjI4S3AkN25K26zl5p/view?usp=drive_link

@@ -1,19 +1,27 @@
 .footer {
+  max-width: 1280px;
   padding: 0 20px;
-}
-
-.footer__content {
   display: flex;
   justify-content: center;
-  border-top: 1px rgba(33, 33, 33, 0.4) solid;
 }
 
 .footer__copyright {
-  margin: 0;
-  padding: 60px 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1280px;
+  padding: 60px;
   font-weight: 400;
   font-size: 16px;
   line-height: 1;
   color: #212121;
   opacity: 70%;
+  border-top: 1px rgba(33, 33, 33, 0.4) solid;
+  text-align: center;
+}
+
+@media screen and (max-width: 627px) {
+  .footer {
+    max-width: 288px;
+    margin: 0 auto;
+  }
 }

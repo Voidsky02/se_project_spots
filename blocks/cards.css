@@ -2,7 +2,7 @@
   list-style-type: none;
   padding: 0;
   padding-top: 20px;
-  padding-bottom: 40px; /* might have to delete this style, but needed space at bottom for bottom border to look correct */
+  padding-bottom: 40px;
   margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, 413px);
