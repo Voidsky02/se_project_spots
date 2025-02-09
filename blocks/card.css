@@ -35,6 +35,7 @@
   background-repeat: no-repeat;
   margin: 0;
   border: none;
+  cursor: pointer;
 }
 
 .card__like-btn:hover {
