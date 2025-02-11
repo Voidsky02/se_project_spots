@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   visibility: hidden;
+  padding: 0 20px;
 }
 
 .modal_opened {
@@ -105,4 +106,31 @@
   font-size: 16px;
   line-height: 1;
   cursor: pointer;
+}
+
+@media screen and (max-width: 627px) {
+  .modal {
+    padding: 0 10px;
+  }
+  .modal__container {
+    padding: 12px;
+  }
+
+  .modal__title {
+    font-size: 20px;
+    margin: 10px 0 34px;
+  }
+
+  .modal__close-btn {
+    top: 12px;
+    right: 12px;
+  }
+
+  .modal__label {
+    margin-bottom: 24px;
+  }
+
+  .modal__submit-btn {
+    width: 100%;
+  }
 }
