@@ -135,6 +135,6 @@
   }
 }
 
-.closedProfileModal {
-  display: none;
+.editProfileModalOpen {
+  visibility: visible;
 }
