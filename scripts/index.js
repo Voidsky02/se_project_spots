@@ -37,3 +37,39 @@ function toggleProfileModal() {
 
 profileEditBtn.addEventListener("click", toggleProfileModal);
 profileCloseBtn.addEventListener("click", toggleProfileModal);
+
+/* JS scode to make placeholders of edit profile form match name and description
+of User profile vvv */
+
+let userName = document.querySelector(".profile__name");
+let userDescription = document.querySelector(".profile__description");
+
+const profileNameInput = document.querySelector("#name");
+const profileDescriptionInput = document.querySelector("#description");
+
+profileNameInput.setAttribute("placeholder", userName.textContent);
+profileDescriptionInput.setAttribute(
+  "placeholder",
+  userDescription.textContent
+);
+
+/* Making save button of edit profile modal functional, updating the users profile name and description.
+Also making sure the close button does not save the entered information vvv */
+
+function handleProfileFormSubmit(event) {
+  event.preventDefault();
+
+  let nameInputValue = profileNameInput.value;
+  let descriptionInputValue = profileDescriptionInput.value;
+
+  userName.textContent = nameInputValue;
+  userDescription.textContent = descriptionInputValue;
+
+  editProfileModal.classList.toggle("editProfileModalOpen");
+}
+
+const profileModalForm = document.querySelector(".modal__form");
+
+profileModalForm.addEventListener("submit", handleProfileFormSubmit);
+
+/* Swith cards from hard coded HTML to Templates reproducable with JS */
