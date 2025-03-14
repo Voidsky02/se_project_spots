@@ -28,20 +28,37 @@ const initialCards = [
 
 /* added functionality to edit profile and close buttons */
 
-const editProfileModal = document.querySelector("#edit-modal");
-
-const profileEditBtn = document.querySelector(".profile__edit-btn");
-
-const profileCloseBtn = document.querySelector(".modal__close-btn");
-
-function toggleProfileModal() {
-  editProfileModal.classList.toggle("modal_opened");
+// function for opening and closing modals (Universal)
+function toggleModal(modal) {
+  modal.classList.toggle("modal_opened");
   profileNameInput.value = userName.textContent;
   profileDescriptionInput.value = userDescription.textContent;
 }
 
-profileEditBtn.addEventListener("click", toggleProfileModal);
-profileCloseBtn.addEventListener("click", toggleProfileModal);
+// applying toggleModal function to edit-profile buttons
+const editProfileModal = document.querySelector("#edit-modal");
+const profileEditBtn = document.querySelector(".profile__edit-btn");
+const profileCloseBtn = document.querySelector("#profile__close-btn");
+
+profileEditBtn.addEventListener("click", () => {
+  toggleModal(editProfileModal);
+});
+profileCloseBtn.addEventListener("click", () => {
+  toggleModal(editProfileModal);
+});
+
+// applying toggleModal function to new-post buttons
+const newPostModal = document.querySelector("#new-post__modal");
+const newPostBtn = document.querySelector(".profile__add-btn");
+const newPostCloseBtn = document.querySelector("#new-post__close-btn");
+
+newPostBtn.addEventListener("click", () => {
+  toggleModal(newPostModal);
+});
+
+newPostCloseBtn.addEventListener("click", () => {
+  toggleModal(newPostModal);
+});
 
 /* JS scode to make placeholders of edit profile form match name and description
 of User profile vvv */
@@ -61,10 +78,10 @@ function handleProfileFormSubmit(event) {
   userName.textContent = profileNameInput.value;
   userDescription.textContent = profileDescriptionInput.value;
 
-  toggleProfileModal();
+  toggleModal(editProfileModal);
 }
 
-const profileModalForm = document.querySelector(".modal__form");
+const profileModalForm = document.querySelector("#profile__modal_form");
 
 profileModalForm.addEventListener("submit", handleProfileFormSubmit);
 
@@ -78,6 +95,10 @@ function getCardElement(data) {
     .querySelector(".card")
     .cloneNode(true);
 
+  // const cardLikeBtn = cardElement.querySelector(".Card__like-btn");
+  // cardLikeBtn.addEventListener("click");
+  // add functionality to event listner above ^
+
   const cardName = cardElement.querySelector(".card__title");
   const cardImage = cardElement.querySelector(".card__image");
 
@@ -88,7 +109,29 @@ function getCardElement(data) {
   return cardElement;
 }
 
-for (let i = 0; i < initialCards.length; i++) {
-  const cardElement = getCardElement(initialCards[i]);
+initialCards.forEach((card) => {
+  const cardElement = getCardElement(card);
   cardsList.prepend(cardElement);
+});
+
+/* Making New-Post submit button functional for adding cards */
+const imageLinkInput = document.querySelector("#image-link");
+const imageCaptionInput = document.querySelector("#image-caption");
+
+function handleNewPostSubmit(event) {
+  event.preventDefault();
+
+  const newPic = {};
+
+  newPic.name = imageCaptionInput.value;
+  newPic.link = imageLinkInput.value;
+
+  const newUserPost = getCardElement(newPic);
+
+  cardsList.prepend(newUserPost);
+
+  toggleModal(newPostModal);
 }
+
+const newPostModalForm = document.querySelector("#new-post__modal_form");
+newPostModalForm.addEventListener("submit", handleNewPostSubmit);
