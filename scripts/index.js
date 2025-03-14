@@ -95,9 +95,11 @@ function getCardElement(data) {
     .querySelector(".card")
     .cloneNode(true);
 
-  // const cardLikeBtn = cardElement.querySelector(".Card__like-btn");
-  // cardLikeBtn.addEventListener("click");
-  // add functionality to event listner above ^
+  const cardLikeBtn = cardElement.querySelector(".card__like-btn");
+  cardLikeBtn.addEventListener("click", () => {
+    cardLikeBtn.classList.toggle("card__like-btn-selected");
+  });
+  // ^ above code adds interactivity to like button
 
   const cardName = cardElement.querySelector(".card__title");
   const cardImage = cardElement.querySelector(".card__image");
