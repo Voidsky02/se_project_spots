@@ -67,7 +67,7 @@ newPostCloseBtn.addEventListener("click", () => {
 // applying toggleModal function to image preview buttons
 const previewModal = document.querySelector("#preview__modal");
 const previewModalImage = document.querySelector(".preview__modal-img");
-const previewCloseBtn = document.querySelector("#preview__close-btn");
+const previewCloseBtn = document.querySelector(".preview__close-btn");
 previewCloseBtn.addEventListener("click", () => {
   toggleModal(previewModal);
 });
