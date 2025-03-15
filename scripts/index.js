@@ -102,7 +102,10 @@ function getCardElement(data) {
   // ^ above code adds interactivity to like button
 
   const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
-  // cardDeleteBtn.addEventListener("click");
+  cardDeleteBtn.addEventListener("click", () => {
+    const deleteElement = cardDeleteBtn.closest(".card");
+    deleteElement.remove();
+  });
   // ^ above code adds interactivity to delete button
 
   const cardName = cardElement.querySelector(".card__title");
@@ -141,6 +144,3 @@ function handleNewPostSubmit(event) {
 
 const newPostModalForm = document.querySelector("#new-post__modal_form");
 newPostModalForm.addEventListener("submit", handleNewPostSubmit);
-
-// add funct to delete button on cards
-const cardDeleteBtn = document.querySelector("");
