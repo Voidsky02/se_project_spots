@@ -1,6 +1,10 @@
 /* Created an array of data for current cards */
 const initialCards = [
   {
+    name: "Red bridge over large lake",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
+  {
     name: "Val Thorens",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
@@ -60,6 +64,14 @@ newPostCloseBtn.addEventListener("click", () => {
   toggleModal(newPostModal);
 });
 
+// applying toggleModal function to image preview buttons
+const previewModal = document.querySelector("#preview__modal");
+const previewModalImage = document.querySelector(".preview__modal-img");
+const previewCloseBtn = document.querySelector("#preview__close-btn");
+previewCloseBtn.addEventListener("click", () => {
+  toggleModal(previewModal);
+});
+
 /* JS scode to make placeholders of edit profile form match name and description
 of User profile vvv */
 
@@ -114,6 +126,12 @@ function getCardElement(data) {
   cardName.textContent = data.name;
   cardImage.src = data.link;
   cardImage.alt = data.name;
+
+  cardImage.addEventListener("click", () => {
+    toggleModal(preview__modal);
+    previewModalImage.src = data.link;
+  });
+  //  ^ above code adds event handlers for preview of pictures
 
   return cardElement;
 }
