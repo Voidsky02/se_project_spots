@@ -67,6 +67,7 @@ newPostCloseBtn.addEventListener("click", () => {
 // applying toggleModal function to image preview buttons
 const previewModal = document.querySelector("#preview__modal");
 const previewModalImage = document.querySelector(".preview__modal-img");
+const previewModalTitle = document.querySelector(".preview__title");
 const previewCloseBtn = document.querySelector(".preview__close-btn");
 previewCloseBtn.addEventListener("click", () => {
   toggleModal(previewModal);
@@ -130,6 +131,7 @@ function getCardElement(data) {
   cardImage.addEventListener("click", () => {
     toggleModal(preview__modal);
     previewModalImage.src = data.link;
+    previewModalTitle.textContent = data.name;
   });
   //  ^ above code adds event handlers for preview of pictures
 
