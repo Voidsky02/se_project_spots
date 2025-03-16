@@ -1,4 +1,4 @@
-.preview__container {
+.preview-img__container {
   display: flex;
   gap: 12.5px;
 }
@@ -22,6 +22,7 @@
   white-space: nowrap;
   overflow: hidden;
   max-width: 353px;
+  display: inline-block;
 }
 
 .preview__close-btn {
