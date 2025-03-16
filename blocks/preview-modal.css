@@ -40,8 +40,9 @@
 }
 
 @media screen and (max-width: 627px) {
-  .preview__container {
+  .preview-img__container {
     flex-direction: column-reverse;
+    gap: 8px;
   }
 
   .preview__close-btn {
