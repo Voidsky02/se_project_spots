@@ -35,8 +35,6 @@ const initialCards = [
 // function for opening and closing modals (Universal)
 function toggleModal(modal) {
   modal.classList.toggle("modal_opened");
-  profileNameInput.value = userName.textContent;
-  profileDescriptionInput.value = userDescription.textContent;
 }
 
 // applying toggleModal function to edit-profile buttons
@@ -45,6 +43,8 @@ const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileCloseBtn = document.querySelector("#profile__close-btn");
 
 profileEditBtn.addEventListener("click", () => {
+  profileNameInput.value = userName.textContent;
+  profileDescriptionInput.value = userDescription.textContent;
   toggleModal(editProfileModal);
 });
 profileCloseBtn.addEventListener("click", () => {
@@ -94,7 +94,7 @@ function handleProfileFormSubmit(event) {
   toggleModal(editProfileModal);
 }
 
-const profileModalForm = document.querySelector("#profile__modal_form");
+const profileModalForm = document.forms["profile__modal_form"];
 
 profileModalForm.addEventListener("submit", handleProfileFormSubmit);
 
@@ -116,8 +116,7 @@ function getCardElement(data) {
 
   const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
   cardDeleteBtn.addEventListener("click", () => {
-    const deleteElement = cardDeleteBtn.closest(".card");
-    deleteElement.remove();
+    cardElement.remove();
   });
   // ^ above code adds interactivity to delete button
 
@@ -129,8 +128,9 @@ function getCardElement(data) {
   cardImage.alt = data.name;
 
   cardImage.addEventListener("click", () => {
-    toggleModal(preview__modal);
+    toggleModal(previewModal);
     previewModalImage.src = data.link;
+    previewModalImage.alt = data.name;
     previewModalTitle.textContent = data.name;
   });
   //  ^ above code adds event handlers for preview of pictures
@@ -160,6 +160,8 @@ function handleNewPostSubmit(event) {
   cardsList.prepend(newUserPost);
 
   toggleModal(newPostModal);
+
+  event.target.reset();
 }
 
 const newPostModalForm = document.querySelector("#new-post__modal_form");
