@@ -1,15 +1,15 @@
-.preview-img__container {
+.modal__img_container_type_preview {
   display: flex;
   gap: 12.5px;
 }
 
-.preview__modal-img {
+.modal__img_type_preview {
   max-width: 80vw;
   max-height: 80vh;
   border-radius: 8px;
 }
 
-.preview__title {
+.modal__title_type_preview {
   margin: 8px 0 0 0;
   color: white;
   background-color: #212121;
@@ -25,7 +25,7 @@
   display: inline-block;
 }
 
-.preview__close-btn {
+.modal__close-btn_type_preview {
   margin: 0;
   padding: 0;
   width: 40px;
@@ -40,12 +40,12 @@
 }
 
 @media screen and (max-width: 627px) {
-  .preview-img__container {
+  .modal__img_container_type_preview {
     flex-direction: column-reverse;
     gap: 8px;
   }
 
-  .preview__close-btn {
+  .modal__close-btn_type_preview {
     align-self: flex-end;
   }
 }
