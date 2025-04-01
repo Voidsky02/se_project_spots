@@ -33,6 +33,8 @@
 }
 
 .modal__close-btn_type_preview {
+  /* position static used to overide modal__close-btn position absolute style */
+  position: static;
   margin: 0;
   padding: 0;
   width: 40px;
