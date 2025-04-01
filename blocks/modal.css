@@ -21,6 +21,7 @@
   transition-delay: 0s;
 }
 
+/* found section is messing up preview img, investigate more */
 .modal__container {
   background-color: white;
   max-width: 730px;

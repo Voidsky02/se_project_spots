@@ -1,3 +1,10 @@
+.modal__container_type_preview {
+  /* add styles to correct override .modal general styles */
+  padding: 0;
+  background-color: transparent;
+  width: auto;
+}
+
 .modal__img_container_type_preview {
   display: flex;
   gap: 12.5px;
