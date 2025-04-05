@@ -52,7 +52,6 @@
 @media screen and (max-width: 627px) {
   #preview__modal {
     padding: 0 10px;
-    /* max-width: 100%; */
   }
 
   .modal__container_type_preview {
@@ -63,8 +62,6 @@
     flex-direction: column-reverse;
     gap: 8px;
     width: 100%;
-    /* height: 100%; */
-    /* padding: 0 16px; */
   }
 
   .modal__img_type_preview {
@@ -73,8 +70,6 @@
     width: 100%;
     height: 100%;
     max-width: 100%;
-    /* flex-basis: 100%;
-    flex-grow: 1; */
   }
 
   .modal__title_type_preview {
