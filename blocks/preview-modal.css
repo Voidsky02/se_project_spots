@@ -6,7 +6,7 @@
   width: auto;
 }
 
-.modal__img_container_type_preview {
+.modal__img-container {
   display: flex;
   gap: 12.5px;
 }
@@ -58,7 +58,7 @@
     width: 100%;
   }
 
-  .modal__img_container_type_preview {
+  .modal__img-container {
     flex-direction: column-reverse;
     gap: 8px;
     width: 100%;
