@@ -65,6 +65,7 @@
             id="profile__close-btn"
           ></button>
           <h2 class="modal__title">Edit Profile</h2>
+          <!-- first edit form v -->
           <form
             name="edit-profile"
             class="modal__form"
@@ -77,7 +78,11 @@
                 id="name"
                 class="modal__input"
                 placeholder="Type your name"
+                minlength="2"
+                maxlength="40"
+                required
               />
+              <span class="name-error form__input-error"></span>
             </label>
             <label for="description" class="modal__label"
               >Description
@@ -86,10 +91,15 @@
                 id="description"
                 class="modal__input"
                 placeholder="Describe yourself"
+                minlength="2"
+                maxlength="200"
+                required
               />
+              <span class="description-error form__input-error"></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
+          <!-- end of edit profile form ^ -->
         </div>
       </div>
       <div class="modal" id="new-post__modal">
@@ -100,6 +110,7 @@
             id="new-post__close-btn"
           ></button>
           <h2 class="modal__title">New post</h2>
+          <!-- new post form below v -->
           <form
             name="edit-profile"
             class="modal__form"
@@ -108,11 +119,13 @@
             <label for="image-link" class="modal__label"
               >Image link
               <input
-                type="text"
+                type="url"
                 id="image-link"
                 class="modal__input"
                 placeholder="Paste a link to the picture"
+                required
               />
+              <span class="image-link-error form__input-error"></span>
             </label>
             <label for="image-caption" class="modal__label"
               >Caption
@@ -121,9 +134,14 @@
                 id="image-caption"
                 class="modal__input"
                 placeholder="Type your caption"
+                minlength="2"
+                maxlength="30"
+                required
               />
+              <span class="image-caption-error form__input-error"></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
+            <!-- end of new post form ^ -->
           </form>
         </div>
       </div>
