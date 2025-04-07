@@ -116,6 +116,22 @@
   cursor: pointer;
 }
 
+/* section for making errors visible and invisible */
+.form__input_type_error {
+  /* these styles are for the input area to turn red when error has occured */
+}
+
+.form__input-error {
+  /* these styles are so the error span text is invisible default */
+  visibility: hidden;
+}
+
+.form__input-error_active {
+  /* These styles will be applied whenever js sees an input is invalid */
+  visibility: visible;
+}
+/* section for making errors visible and invisible */
+
 @media screen and (max-width: 627px) {
   .modal {
     padding: 0 10px;
