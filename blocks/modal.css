@@ -116,21 +116,43 @@
   cursor: pointer;
 }
 
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+
 /* section for making errors visible and invisible */
 .form__input_type_error {
   /* these styles are for the input area to turn red when error has occured */
 }
 
-.form__input-error {
+.modal__error {
   /* these styles are so the error span text is invisible default */
   visibility: hidden;
 }
 
-.form__input-error_active {
+.modal__error_visible {
   /* These styles will be applied whenever js sees an input is invalid */
   visibility: visible;
 }
-/* section for making errors visible and invisible */
+
+.modal__submit-btn_disabled {
+  /* class for disabling button when error is present */
+}
+
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
 
 @media screen and (max-width: 627px) {
   .modal {
