@@ -133,12 +133,17 @@
 
 .modal__error {
   /* these styles are so the error span text is invisible default */
-  visibility: hidden;
+  display: block;
+  color: #ff0000b2;
+  opacity: 70;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 110%;
 }
 
 .modal__error_visible {
   /* These styles will be applied whenever js sees an input is invalid */
-  visibility: visible;
 }
 
 .modal__submit-btn_disabled {
