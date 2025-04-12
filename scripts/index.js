@@ -35,7 +35,21 @@ const initialCards = [
 // function for opening and closing modals (Universal)
 function toggleModal(modal) {
   modal.classList.toggle("modal_opened");
+  document.addEventListener("keydown", isKeyEscape);
 }
+
+const isKeyEscape = (evt) => {
+  if (evt.key === "Escape") {
+    const currentModal = document.querySelector(".modal_opened");
+    toggleModal(currentModal);
+    removeEscapeKeyFunc();
+  }
+};
+
+// made removing escape key listener a function for easier reusability
+const removeEscapeKeyFunc = () => {
+  document.removeEventListener("keydown", isKeyEscape);
+};
 
 // applying toggleModal function to edit-profile buttons
 const editProfileModal = document.querySelector("#edit-modal");
@@ -54,6 +68,7 @@ profileEditBtn.addEventListener("click", () => {
 });
 profileCloseBtn.addEventListener("click", () => {
   toggleModal(editProfileModal);
+  document.removeEventListener("keydown", isKeyEscape);
 });
 
 // applying toggleModal function to new-post buttons
@@ -67,6 +82,7 @@ newPostBtn.addEventListener("click", () => {
 
 newPostCloseBtn.addEventListener("click", () => {
   toggleModal(newPostModal);
+  document.removeEventListener("keydown", isKeyEscape);
 });
 
 // applying toggleModal function to image preview buttons
@@ -99,6 +115,7 @@ function handleProfileFormSubmit(event) {
   userDescription.textContent = profileDescriptionInput.value;
 
   toggleModal(editProfileModal);
+  document.removeEventListener("keydown", isKeyEscape);
 }
 
 const profileModalForm = document.forms["profile__modal_form"];
@@ -170,6 +187,7 @@ function handleNewPostSubmit(event) {
   cardsList.prepend(newUserPost);
 
   toggleModal(newPostModal);
+  document.removeEventListener("keydown", isKeyEscape);
 
   event.target.reset();
   disableButton(cardSubmitBtn, settings);
@@ -197,3 +215,5 @@ const setModalEventListeners = (modalArray) => {
 };
 
 setModalEventListeners(modalList);
+
+// enable user to close modals w/ escape key

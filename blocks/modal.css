@@ -142,10 +142,6 @@
   line-height: 110%;
 }
 
-.modal__error_visible {
-  /* These styles will be applied whenever js sees an input is invalid */
-}
-
 .modal__submit-btn_disabled {
   opacity: 50%;
 }
