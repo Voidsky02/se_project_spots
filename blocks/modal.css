@@ -127,8 +127,8 @@
 /**/
 
 /* section for making errors visible and invisible */
-.form__input_type_error {
-  /* these styles are for the input area to turn red when error has occured */
+.modal__input_type_error {
+  border: 1px solid rgba(255, 0, 0, 0.6);
 }
 
 .modal__error {
@@ -147,7 +147,7 @@
 }
 
 .modal__submit-btn_disabled {
-  /* class for disabling button when error is present */
+  opacity: 50%;
 }
 
 /**/

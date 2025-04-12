@@ -45,6 +45,11 @@ const profileCloseBtn = document.querySelector("#profile__close-btn");
 profileEditBtn.addEventListener("click", () => {
   profileNameInput.value = userName.textContent;
   profileDescriptionInput.value = userDescription.textContent;
+  resetValidation(
+    editProfileModal,
+    [profileNameInput, profileDescriptionInput],
+    settings
+  );
   toggleModal(editProfileModal);
 });
 profileCloseBtn.addEventListener("click", () => {
@@ -145,6 +150,9 @@ initialCards.forEach((card) => {
   cardsList.prepend(cardElement);
 });
 
+// added in Sprint 6 project
+const cardSubmitBtn = newPostModal.querySelector(".modal__submit-btn");
+
 /* Making New-Post submit button functional for adding cards */
 const imageLinkInput = document.querySelector("#image-link");
 const imageCaptionInput = document.querySelector("#image-caption");
@@ -164,6 +172,7 @@ function handleNewPostSubmit(event) {
   toggleModal(newPostModal);
 
   event.target.reset();
+  disableButton(cardSubmitBtn, settings);
 }
 
 const newPostModalForm = document.querySelector("#new-post__modal_form");
