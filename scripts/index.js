@@ -177,3 +177,5 @@ function handleNewPostSubmit(event) {
 
 const newPostModalForm = document.querySelector("#new-post__modal_form");
 newPostModalForm.addEventListener("submit", handleNewPostSubmit);
+
+// below is code for closing modals when clicking outside of area
