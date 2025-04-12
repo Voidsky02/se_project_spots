@@ -215,5 +215,3 @@ const setModalEventListeners = (modalArray) => {
 };
 
 setModalEventListeners(modalList);
-
-// enable user to close modals w/ escape key
