@@ -1,4 +1,6 @@
 const settings = {
+  // adding my own modal selector
+  modalSelector: ".modal",
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-btn",

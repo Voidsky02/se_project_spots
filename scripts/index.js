@@ -179,3 +179,21 @@ const newPostModalForm = document.querySelector("#new-post__modal_form");
 newPostModalForm.addEventListener("submit", handleNewPostSubmit);
 
 // below is code for closing modals when clicking outside of area
+const modalList = document.querySelectorAll(".modal");
+
+// made event 'mousedown' because modal would close when highlighting input
+// to delete but releasing the mouse over the dark modal section
+const setModalEventListeners = (modalArray) => {
+  modalArray.forEach((modal) => {
+    modal.addEventListener("mousedown", (evt) => {
+      if (evt.target.id === "edit-modal") {
+        toggleModal(editProfileModal);
+      } else if (evt.target.id === "new-post__modal") {
+        toggleModal(newPostModal);
+      } else {
+      }
+    });
+  });
+};
+
+setModalEventListeners(modalList);
