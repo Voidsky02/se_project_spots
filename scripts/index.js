@@ -33,16 +33,21 @@ const initialCards = [
 /* added functionality to edit profile and close buttons */
 
 // function for opening and closing modals (Universal)
-function toggleModal(modal) {
-  modal.classList.toggle("modal_opened");
+function openModal(modal) {
+  modal.classList.add("modal_opened");
   document.addEventListener("keydown", isKeyEscape);
+}
+
+// add this function wherever i need to close modals aka close & submit buttons
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+  removeEscapeKeyFunc();
 }
 
 const isKeyEscape = (evt) => {
   if (evt.key === "Escape") {
     const currentModal = document.querySelector(".modal_opened");
-    toggleModal(currentModal);
-    removeEscapeKeyFunc();
+    closeModal(currentModal);
   }
 };
 
@@ -64,11 +69,10 @@ profileEditBtn.addEventListener("click", () => {
     [profileNameInput, profileDescriptionInput],
     settings
   );
-  toggleModal(editProfileModal);
+  openModal(editProfileModal);
 });
 profileCloseBtn.addEventListener("click", () => {
-  toggleModal(editProfileModal);
-  document.removeEventListener("keydown", isKeyEscape);
+  closeModal(editProfileModal);
 });
 
 // applying toggleModal function to new-post buttons
@@ -77,12 +81,11 @@ const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostCloseBtn = document.querySelector("#new-post__close-btn");
 
 newPostBtn.addEventListener("click", () => {
-  toggleModal(newPostModal);
+  openModal(newPostModal);
 });
 
 newPostCloseBtn.addEventListener("click", () => {
-  toggleModal(newPostModal);
-  document.removeEventListener("keydown", isKeyEscape);
+  closeModal(newPostModal);
 });
 
 // applying toggleModal function to image preview buttons
@@ -93,7 +96,7 @@ const previewCloseBtn = document.querySelector(
   ".modal__close-btn_type_preview"
 );
 previewCloseBtn.addEventListener("click", () => {
-  toggleModal(previewModal);
+  closeModal(previewModal);
 });
 
 /* JS scode to make placeholders of edit profile form match name and description
@@ -114,8 +117,7 @@ function handleProfileFormSubmit(event) {
   userName.textContent = profileNameInput.value;
   userDescription.textContent = profileDescriptionInput.value;
 
-  toggleModal(editProfileModal);
-  document.removeEventListener("keydown", isKeyEscape);
+  closeModal(editProfileModal);
 }
 
 const profileModalForm = document.forms["profile__modal_form"];
@@ -152,7 +154,7 @@ function getCardElement(data) {
   cardImage.alt = data.name;
 
   cardImage.addEventListener("click", () => {
-    toggleModal(previewModal);
+    openModal(previewModal);
     previewModalImage.src = data.link;
     previewModalImage.alt = data.name;
     previewModalTitle.textContent = data.name;
@@ -186,8 +188,7 @@ function handleNewPostSubmit(event) {
 
   cardsList.prepend(newUserPost);
 
-  toggleModal(newPostModal);
-  document.removeEventListener("keydown", isKeyEscape);
+  closeModal(newPostModal);
 
   event.target.reset();
   disableButton(cardSubmitBtn, settings);
@@ -204,11 +205,8 @@ const modalList = document.querySelectorAll(".modal");
 const setModalEventListeners = (modalArray) => {
   modalArray.forEach((modal) => {
     modal.addEventListener("mousedown", (evt) => {
-      if (evt.target.id === "edit-modal") {
-        toggleModal(editProfileModal);
-      } else if (evt.target.id === "new-post__modal") {
-        toggleModal(newPostModal);
-      } else {
+      if (evt.target.classList.contains("modal")) {
+        closeModal(modal);
       }
     });
   });
