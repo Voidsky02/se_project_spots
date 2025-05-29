@@ -1,34 +1,43 @@
+import "./index.css";
+import {
+  enableValidation,
+  settings,
+  disableButton,
+  resetValidation,
+} from "../scripts/validation.js";
+import Api from "../utils/Api.js";
+
 /* Created an array of data for current cards */
-const initialCards = [
-  {
-    name: "Red bridge over large lake",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-  },
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-];
+// const initialCards = [
+//   {
+//     name: "Red bridge over large lake",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+//   },
+//   {
+//     name: "Val Thorens",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+//   },
+//   {
+//     name: "Restaurant terrace",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
+//   },
+//   {
+//     name: "An outdoor cafe",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
+//   },
+//   {
+//     name: "A very long bridge, over the forest and through the trees",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
+//   },
+//   {
+//     name: "Tunnel with morning light",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+//   },
+//   {
+//     name: "Mountain house",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+//   },
+// ];
 
 /* added functionality to edit profile and close buttons */
 
@@ -102,6 +111,7 @@ previewCloseBtn.addEventListener("click", () => {
 /* JS scode to make placeholders of edit profile form match name and description
 of User profile vvv */
 
+const userAvatar = document.querySelector(".profile__avatar");
 const userName = document.querySelector(".profile__name");
 const userDescription = document.querySelector(".profile__description");
 
@@ -114,10 +124,22 @@ Also making sure the close button does not save the entered information vvv */
 function handleProfileFormSubmit(event) {
   event.preventDefault();
 
-  userName.textContent = profileNameInput.value;
-  userDescription.textContent = profileDescriptionInput.value;
+  // userName.textContent = profileNameInput.value;
+  // userDescription.textContent = profileDescriptionInput.value;
 
-  closeModal(editProfileModal);
+  api
+    .editUserInfo({
+      name: profileNameInput.value,
+      about: profileDescriptionInput.value,
+    })
+    .then((data) => {
+      userName.textContent = data.name;
+      userDescription.textContent = data.about;
+      closeModal(editProfileModal);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 const profileModalForm = document.forms["profile__modal_form"];
@@ -164,11 +186,6 @@ function getCardElement(data) {
   return cardElement;
 }
 
-initialCards.forEach((card) => {
-  const cardElement = getCardElement(card);
-  cardsList.prepend(cardElement);
-});
-
 // added in Sprint 6 project
 const cardSubmitBtn = newPostModal.querySelector(".modal__submit-btn");
 
@@ -213,3 +230,34 @@ const setModalEventListeners = (modalArray) => {
 };
 
 setModalEventListeners(modalList);
+
+enableValidation(settings);
+
+/* API Class initializations below */
+
+/* Boiler PLate Below */
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "2614c96a-b56e-4551-baaa-15c592c84c27",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getAppInfo()
+  .then(([cards, userInfo]) => {
+    // handle initial cards
+    cards.forEach((card) => {
+      const cardElement = getCardElement(card);
+      cardsList.prepend(cardElement);
+    });
+
+    // handle user info
+    userAvatar.src = userInfo.avatar;
+    userName.textContent = userInfo.name;
+    userDescription.textContent = userInfo.about;
+  })
+  .catch((err) => {
+    console.error(err);
+  });
