@@ -162,12 +162,21 @@ function getCardElement(data) {
   });
   // ^ above code adds interactivity to like button
 
+  //
+  //
+  //
+  // Delete Card Functionality
+
   const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
   cardDeleteBtn.addEventListener("click", () => {
-    cardElement.remove();
+    // cardElement.remove();
+    openModal(deleteModal);
   });
   // ^ above code adds interactivity to delete button
 
+  //
+  //
+  //
   const cardName = cardElement.querySelector(".card__title");
   const cardImage = cardElement.querySelector(".card__image");
 
@@ -232,6 +241,62 @@ const setModalEventListeners = (modalArray) => {
 setModalEventListeners(modalList);
 
 enableValidation(settings);
+
+//
+//
+//
+//
+//
+//
+
+// Delete modal functionality
+const deleteModal = document.querySelector("#delete-modal");
+const deleteModalCloseBtn = deleteModal.querySelector("#delete__close-btn");
+const deleteModalCancelBtn = deleteModal.querySelector("#cancel-btn");
+
+deleteModalCloseBtn.addEventListener("click", () => {
+  closeModal(deleteModal);
+});
+
+deleteModalCancelBtn.addEventListener("click", () => {
+  closeModal(deleteModal);
+});
+
+// Avatar form elements
+const editAvatarBtn = document.querySelector(".profile__avatar-btn");
+const avatarModal = document.querySelector("#avatar-modal");
+const avatarForm = avatarModal.querySelector(".modal__form");
+const avatarSubmitBtn = avatarModal.querySelector(".modal__submit-btn");
+const avatarLinkInput = avatarModal.querySelector("#profile-avatar-input");
+const avatarModalCloseBtn = avatarModal.querySelector("#avatar__close-btn");
+
+// Avatar form submit function
+function handleAvatarSubmit(evt) {
+  evt.preventDefault();
+  // finish this!!
+  api
+    .editAvatar(avatarLinkInput.value)
+    .then((data) => {
+      userAvatar.src = data.avatar;
+      closeModal(avatarModal);
+      evt.target.reset();
+      disableButton(avatarSubmitBtn, settings);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+// Avatar event listeners
+editAvatarBtn.addEventListener("click", () => {
+  openModal(avatarModal);
+});
+
+avatarModalCloseBtn.addEventListener("click", () => {
+  closeModal(avatarModal);
+});
+
+avatarForm.addEventListener("submit", handleAvatarSubmit);
 
 /* API Class initializations below */
 
