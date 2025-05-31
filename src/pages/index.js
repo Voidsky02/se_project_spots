@@ -195,34 +195,6 @@ function getCardElement(data) {
   return cardElement;
 }
 
-// added in Sprint 6 project
-const cardSubmitBtn = newPostModal.querySelector(".modal__submit-btn");
-
-/* Making New-Post submit button functional for adding cards */
-const imageLinkInput = document.querySelector("#image-link");
-const imageCaptionInput = document.querySelector("#image-caption");
-
-function handleNewPostSubmit(event) {
-  event.preventDefault();
-
-  const newPic = {};
-
-  newPic.name = imageCaptionInput.value;
-  newPic.link = imageLinkInput.value;
-
-  const newUserPost = getCardElement(newPic);
-
-  cardsList.prepend(newUserPost);
-
-  closeModal(newPostModal);
-
-  event.target.reset();
-  disableButton(cardSubmitBtn, settings);
-}
-
-const newPostModalForm = document.querySelector("#new-post__modal_form");
-newPostModalForm.addEventListener("submit", handleNewPostSubmit);
-
 // below is code for closing modals when clicking outside of area
 const modalList = document.querySelectorAll(".modal");
 
@@ -298,9 +270,7 @@ avatarModalCloseBtn.addEventListener("click", () => {
 
 avatarForm.addEventListener("submit", handleAvatarSubmit);
 
-/* API Class initializations below */
-
-/* Boiler PLate Below */
+// Initialize api
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -309,6 +279,7 @@ const api = new Api({
   },
 });
 
+// initial methods that render on page load
 api
   .getAppInfo()
   .then(([cards, userInfo]) => {
@@ -326,3 +297,34 @@ api
   .catch((err) => {
     console.error(err);
   });
+
+//
+//
+//
+// Add new Post
+const cardSubmitBtn = newPostModal.querySelector(".modal__submit-btn");
+const imageLinkInput = document.querySelector("#image-link");
+const imageCaptionInput = document.querySelector("#image-caption");
+const newPostModalForm = document.querySelector("#new-post__modal_form");
+
+newPostModalForm.addEventListener("submit", handleNewPostSubmit);
+
+function handleNewPostSubmit(event) {
+  event.preventDefault();
+
+  api
+    .addNewPost({
+      name: `${imageCaptionInput.value}`,
+      link: `${imageLinkInput.value}`,
+    })
+    .then((data) => {
+      const newUserPost = getCardElement(data);
+      cardsList.prepend(newUserPost);
+      closeModal(newPostModal);
+      event.target.reset();
+      disableButton(cardSubmitBtn, settings);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
